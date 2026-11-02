@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4yuan8 · Vincent — networking &amp; self-hosting notes</title>
+<style>
+body{font-family:Georgia,serif;background:#faf7f2;color:#222;max-width:720px;margin:40px auto;padding:0 20px;line-height:1.7}
+h1{font-size:28px;margin-bottom:4px}
+.tag{color:#777;margin-top:0}
+h2{border-bottom:2px solid #e3dccf;padding-bottom:4px;margin-top:36px}
+article{margin:18px 0}
+article h3{margin-bottom:4px}
+article p{margin-top:4px;color:#444}
+footer{margin-top:48px;color:#999;font-size:14px;border-top:1px solid #e3dccf;padding-top:12px}
+a{color:#0b5cad}
+</style>
+</head>
+<body>
+<h1>Vincent (4yuan8)</h1>
+<p class="tag">Personal notes on computer networking, DNS and self-hosted services.</p>
+<h2>About</h2>
+<p>I am a hobbyist who likes to understand how the internet actually works: DNS, tunnels, proxies and tiny servers that cost nothing. This page is my workshop notebook — what I tried, what broke, and what finally worked. Everything here is personal and non-commercial.</p>
+<h2>Notes</h2>
+<article>
+<h3>Keeping a free VM alive with GitHub Actions</h3>
+<p>Some free platforms sleep when idle. A tiny scheduled GitHub Actions workflow that pings the machine every few minutes keeps it warm. The trick is to keep the interval polite and the script simple, and to accept that a free lunch always comes with house rules.</p>
+</article>
+<article>
+<h3>A field guide to free domains</h3>
+<p>Free domains are a small zoo: EU.org (free forever, manual review, full nameserver delegation), DigitalPlat domains such as dpdns.org and qzz.io (free renewal windows before expiry), KataBump subdomains, and developer subdomains like is-a.dev. I keep notes on which ones allow NS delegation to Cloudflare and which only allow simple records.</p>
+</article>
+<article>
+<h3>Why I settled on one proxy client</h3>
+<p>After trying sing-box, Xray and mihomo based clients side by side, I kept a single sing-box client in eBPF root mode. One well-understood tool beats three half-configured ones. Notes on rule sets, DNS splitting and urltest behaviour live here.</p>
+</article>
+<h2>Links</h2>
+<p><a href="https://github.com/chenshiyuani">github.com/chenshiyuani</a></p>
+<footer>© 2026 Vincent · Built by hand with plain HTML · Contact: 4yuan8@gmail.com</footer>
+</body>
+</html>
