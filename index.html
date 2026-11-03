@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>4yuan8 · Vincent — networking &amp; self-hosting notes</title>
+<title>4yuan8 · Vincent — hobbyist developer: networking, serverless &amp; self-hosting</title>
 <style>
 body{font-family:Georgia,serif;background:#faf7f2;color:#222;max-width:720px;margin:40px auto;padding:0 20px;line-height:1.7}
 h1{font-size:28px;margin-bottom:4px}
@@ -12,27 +12,42 @@ h2{border-bottom:2px solid #e3dccf;padding-bottom:4px;margin-top:36px}
 article{margin:18px 0}
 article h3{margin-bottom:4px}
 article p{margin-top:4px;color:#444}
+code{font-family:Menlo,Consolas,monospace;font-size:.92em;background:#f0ead9;padding:1px 5px;border-radius:3px}
 footer{margin-top:48px;color:#999;font-size:14px;border-top:1px solid #e3dccf;padding-top:12px}
 a{color:#0b5cad}
 </style>
 </head>
 <body>
 <h1>Vincent (4yuan8)</h1>
-<p class="tag">Personal notes on computer networking, DNS and self-hosted services.</p>
+<p class="tag">Hobbyist developer working on computer networking, serverless edge deployments and self-hosted services.</p>
 <h2>About</h2>
-<p>I am a hobbyist who likes to understand how the internet actually works: DNS, tunnels, proxies and tiny servers that cost nothing. This page is my workshop notebook — what I tried, what broke, and what finally worked. Everything here is personal and non-commercial.</p>
+<p>I am a hobbyist developer who learns by building: DNS infrastructure, proxy and tunnelling stacks (Xray-core, sing-box), serverless deployments on Cloudflare's edge, and small automation around free-tier platforms. This site is my developer portfolio and lab notebook — the projects below are things I actually deploy, run and maintain. Everything here is personal, open and non-commercial.</p>
+<p>Tools I work with: <code>sing-box</code> · <code>Xray-core</code> · <code>Cloudflare Workers/Pages</code> · <code>GitHub Actions</code> · <code>DNS &amp; TLS</code> · <code>Linux</code></p>
+<h2>Projects</h2>
+<article>
+<h3>Edge proxy nodes on Cloudflare Pages</h3>
+<p>I deploy and maintain VLESS/Trojan-over-WebSocket proxy nodes on Cloudflare Pages, based on the open-source <a href="https://github.com/yonggekkk/Cloudflare-vless-trojan">Cloudflare-vless-trojan</a> project — both TLS and non-TLS variants, with custom domains attached via CNAME + TXT verification, and a sing-box client configuration (rule sets, DNS splitting, urltest groups) on the receiving end. My running notes cover what breaks, what the platform's risk controls block, and what finally works.</p>
+</article>
+<article>
+<h3>instabox-keepalive — GitHub Actions automation</h3>
+<p>A scheduled GitHub Actions workflow that pings a free-tier VM every few minutes so the platform does not put it to sleep. The interesting parts are the scheduling trade-offs: polite intervals, idempotent pings, and accepting that free platforms have house rules. Code: <a href="https://github.com/chenshiyuani/instabox-keepalive">github.com/chenshiyuani/instabox-keepalive</a></p>
+</article>
+<article>
+<h3>Free domain &amp; DNS lab</h3>
+<p>I run a small portfolio of free domains and document how each registry behaves: EU.org (free forever, volunteer review, full nameserver delegation to Cloudflare), DigitalPlat domains such as <code>dpdns.org</code> and <code>qzz.io</code> (free renewal windows before expiry), KataBump subdomains, and developer subdomains like is-a.dev. The notes track which providers allow NS delegation, which only allow simple A/AAAA/CNAME/TXT/MX records, and how I keep renewals from lapsing.</p>
+</article>
+<article>
+<h3>This site</h3>
+<p>Hand-written static HTML — no framework, no build step — hosted on GitHub Pages. Source: <a href="https://github.com/chenshiyuani/chenshiyuani.github.io">github.com/chenshiyuani/chenshiyuani.github.io</a></p>
+</article>
 <h2>Notes</h2>
 <article>
-<h3>Keeping a free VM alive with GitHub Actions</h3>
-<p>Some free platforms sleep when idle. A tiny scheduled GitHub Actions workflow that pings the machine every few minutes keeps it warm. The trick is to keep the interval polite and the script simple, and to accept that a free lunch always comes with house rules.</p>
-</article>
-<article>
-<h3>A field guide to free domains</h3>
-<p>Free domains are a small zoo: EU.org (free forever, manual review, full nameserver delegation), DigitalPlat domains such as dpdns.org and qzz.io (free renewal windows before expiry), KataBump subdomains, and developer subdomains like is-a.dev. I keep notes on which ones allow NS delegation to Cloudflare and which only allow simple records.</p>
-</article>
-<article>
 <h3>Why I settled on one proxy client</h3>
-<p>After trying sing-box, Xray and mihomo based clients side by side, I kept a single sing-box client in eBPF root mode. One well-understood tool beats three half-configured ones. Notes on rule sets, DNS splitting and urltest behaviour live here.</p>
+<p>After running sing-box, Xray and mihomo based clients side by side, I kept a single sing-box client in eBPF root mode. One well-understood tool beats three half-configured ones. Notes on rule sets, DNS splitting and urltest behaviour live here.</p>
+</article>
+<article>
+<h3>Reading a platform's failure modes</h3>
+<p>Free tiers fail in characteristic ways: an uptime test that reports every node dead while real traffic flows fine, a login blocked by datacenter-IP risk controls rather than a wrong password, a build pipeline disabled while the deployed site keeps serving. Half of self-hosting on free infrastructure is learning to tell "actually broken" apart from "the dashboard says broken".</p>
 </article>
 <h2>Links</h2>
 <p><a href="https://github.com/chenshiyuani">github.com/chenshiyuani</a></p>
